@@ -1,0 +1,23 @@
+@startuml Manage Camp (GET)
+
+header Sameple Campground Booking Sequence Diagram
+footer Page %page% of %lastpage%
+title "Manage Camp (GET)"
+
+participant "Client" as client
+participant "<<javaScript>>\n:server" as server
+participant "<<router>>\n:camps" as routerCamps
+participant "<<controllers>>\n:camps" as controllersCamps
+participant "<<model>>\n:Camp" as modelCamp
+database "<<MongoDB>>\n:camps" as CampsDatabase
+
+client->server ++:req.get('/api/v1/camps/:id')
+server->routerCamps ++:app.use('/api/v1/camps',camps)
+routerCamps -> controllersCamps ++:getCamp()
+controllersCamps->modelCamp ++:create(req.body)
+modelCamp ->CampsDatabase ++: CampSchema
+CampsDatabase --> modelCamp --: camp
+controllersCamps <-- modelCamp --:camp
+controllersCamps->client --:response
+
+@enduml

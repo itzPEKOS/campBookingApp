@@ -1,0 +1,50 @@
+@startuml User Usecase Diagram
+
+left to right direction
+
+actor NewUser
+actor RegisteredUser
+actor Admin
+
+rectangle "Campground Booking System" {
+    usecase Register as "Register"
+    usecase Login as "Login"
+    usecase Logout as "Logout"
+
+    usecase ViewAllCampgrounds as "View All Campground"
+    usecase ViewSingleCampground as "View Single Campground"
+    usecase CreateCampground as "Create Campground"
+    usecase EditCampground as "Edit Campground"
+    usecase DeleteCampground as "Delete Campground"
+
+    usecase ViewAllCampgroundBookings as "View All Campground Bookings"
+    usecase ViewSingleCampgroundBooking as "View Single Campground Booking"
+    usecase CreateCampgroundBooking as "Create Campground Booking"
+    usecase EditCampgroundBooking as "Edit Campground Booking"
+    usecase DeleteCampgroundBooking as "Delete Campground Booking"
+}
+
+NewUser --> Register
+
+RegisteredUser --> Login
+RegisteredUser --> Logout
+RegisteredUser --> ViewAllCampgrounds
+RegisteredUser --> ViewSingleCampground
+RegisteredUser --> ViewAllCampgroundBookings
+RegisteredUser --> ViewSingleCampgroundBooking
+RegisteredUser --> CreateCampgroundBooking
+RegisteredUser --> EditCampgroundBooking
+RegisteredUser --> DeleteCampgroundBooking
+
+ViewAllCampgrounds <-- Admin
+ViewSingleCampground <-- Admin
+CreateCampground <-- Admin
+EditCampground <-- Admin
+DeleteCampground <-- Admin
+ViewAllCampgroundBookings <-- Admin
+ViewSingleCampgroundBooking <-- Admin
+CreateCampgroundBooking <-- Admin
+EditCampgroundBooking <-- Admin
+DeleteCampgroundBooking <-- Admin
+
+@enduml
