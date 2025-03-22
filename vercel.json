@@ -1,6 +1,6 @@
 {
     "vercel": 2,
-    "name": "camp-booking-app",
+    "name": "camp-booking",
     "builds": [
         {
             "src": "server.js",
