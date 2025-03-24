@@ -18,6 +18,12 @@ const BookingSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now
+    },
+    nameLastname: {
+        type: String
+    },
+    tel: {
+        type: String
     }
 });
 
