@@ -4,6 +4,11 @@ const cookieParser = require('cookie-parser');
 const connectDB = require('./config/db');
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUI = require('swagger-ui-express');
+const mongoSanitize=require('express-mongo-sanitize');
+const helmet=require('helmet');
+const {xss}=require('express-xss-sanitizer')
+const hpp=require('hpp');
+const cors=require('cors');
 
 //Load env vars
 dotenv.config({path:'./config/config.env'});
@@ -23,6 +28,21 @@ app.use(express.json());
 
 //Cookie parser
 app.use(cookieParser());
+
+//Sanitize date
+app.use(mongoSanitize());
+
+//Set security headers
+app.use(helmet());
+
+//Preevent XSS attacks
+app.use(xss());
+
+//Prevent http param pollutions
+app.use(hpp());
+
+//Enable CORS
+app.use(cors());
 
 //Mount routers
 app.use('/api/v1/camps',camps);
